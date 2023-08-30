@@ -1,2 +1,4 @@
-# project-test
-Two friends making love to React and JS
+# Comment Page 
+Comment page web app
+Frontend done with react js.
+Backend done with express (node js)
