@@ -7,6 +7,8 @@ const CommentStructure = () => {
     const [comments, setComments] = useState([])
 
     const [comment, setComment] = useState('')
+
+    const [color, setColor] = useState('#000000')
     
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -16,7 +18,7 @@ const CommentStructure = () => {
 
     const addComment = async () => {
         try {
-            await axios.post('/post-comment', { comment });
+            await axios.post('/post-comment', { comment, color });
             // console.log('Comment submitted');
         } catch (error) {
             console.error('Error submitting comment:', error);
@@ -38,7 +40,10 @@ const CommentStructure = () => {
 
     const handleCommentChange = (event) => {
         setComment(event.target.value);
-        // console.log(comment);
+    };
+
+    const handleColorChange = (event) => {
+        setColor(event.target.value);
     };
 
     const listStyle = {
@@ -64,15 +69,17 @@ const CommentStructure = () => {
         width: '100%',
         boxSizing: 'border-box', 
     };
+
     return (
     <div>
         <ul style={listStyle}>
             {comments.map((c, index) => (
-                <li key={index}>{c}</li>
+                <li key={index} style={{color:c.color}}>{c.comment}</li>
             ))}
         </ul>
         <form onSubmit={handleSubmit}>
-            <input type="text" style={inputStyle} value={comment} onChange={e => handleCommentChange(e)}></input>
+            <input type="color" value={color} onChange={e => handleColorChange(e)}></input>
+            <input type="text" style={inputStyle} value={comment} placeholder="Type Here" onChange={e => handleCommentChange(e)}></input>
             <button type="submit" style={buttonStyle}>Submit</button>
         </form>
     </div>
