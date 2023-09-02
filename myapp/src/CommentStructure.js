@@ -75,16 +75,16 @@ const CommentStructure = () => {
 
     return (
     <div>
+        <form onSubmit={handleSubmit} id="commentform">
+            <input type="color" value={color} onChange={e => handleColorChange(e)}></input>
+            <input type="text"  style={inputStyle} value={comment} placeholder="Type Here" onChange={e => handleCommentChange(e)}></input>
+            <button type="submit" style={buttonStyle}>Submit</button>
+        </form>
         <ul style={listStyle}>
             {comments.map((c, index) => (
                 <li key={index} style={{color:c.color}}>{c.comment}</li>
             ))}
         </ul>
-        <form onSubmit={handleSubmit} id="commentform">
-            <input type="color" value={color} onChange={e => handleColorChange(e)}></input>
-            <input type="text" style={inputStyle} value={comment} placeholder="Type Here" onChange={e => handleCommentChange(e)}></input>
-            <button type="submit" style={buttonStyle}>Submit</button>
-        </form>
     </div>
     );
 };
