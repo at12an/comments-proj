@@ -99,7 +99,7 @@ const CommentStructure = () => {
                 </div>
             </div>
             <br></br>
-            {/* <button type="submit" style={buttonStyle}>Submit</button> */}``
+            {/* <button type="submit" style={buttonStyle}>Submit</button> */}
         </form>
         <div class='flex justify-center items-center mt-8'>
             <ul style={listStyle}>
