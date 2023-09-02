@@ -1,41 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-axios.defaults.timeout = 5000;
+axios.defaults.timeout = 10000;
 
 const CommentStructure = () => {
 
-    const [comments, setComments] = useState([])
+    const [comments, setComments] = useState([]);
 
-    const [comment, setComment] = useState('')
+    const [comment, setComment] = useState('');
 
-    const [color, setColor] = useState('#000000')
+    const [color, setColor] = useState('#000000');
     
     const handleSubmit = async (event) => {
         event.preventDefault();
-        addComment()
-        fetchComments()
+        try {
+            // console.log(color)
+            await addComment();
+            await fetchComments();
+        } catch (error) {
+            console.log('An error occurred while submitting the comment.');
+        }
     };
 
-    const addComment = async () => {
-        try {
-            await axios.post('/post-comment', { comment, color });
-            // console.log('Comment submitted');
-        } catch (error) {
-            console.error('Error submitting comment:', error);
-        }
+    const addComment = () => {
+        axios.post('/post-comment', {comment, color}).catch((error) => {
+            console.log(error);
+        });
     };
 
     const fetchComments = async () => {
-        try {
-            const response = await axios.get('/get-comments');
-            setComments(response.data);
-        } catch (error) {
-            console.error('Error fetching comments:', error);
-        }
+        axios.get('/get-comments').then((response) => {
+            setComments(response.data.comments)
+        }).catch((error) => {
+            console.log(error);
+        });
     };
 
     useEffect(() => {
-        fetchComments();
+        fetchComments().catch((error) => {
+            console.log('An error occurred while fetching comments.');
+        });;
     }, []);
 
     const handleCommentChange = (event) => {
@@ -77,7 +80,7 @@ const CommentStructure = () => {
                 <li key={index} style={{color:c.color}}>{c.comment}</li>
             ))}
         </ul>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} id="commentform">
             <input type="color" value={color} onChange={e => handleColorChange(e)}></input>
             <input type="text" style={inputStyle} value={comment} placeholder="Type Here" onChange={e => handleCommentChange(e)}></input>
             <button type="submit" style={buttonStyle}>Submit</button>
