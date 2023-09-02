@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import SubmitButton from './SubmitButton';
 axios.defaults.timeout = 10000;
 
 const CommentStructure = () => {
@@ -72,19 +73,41 @@ const CommentStructure = () => {
         width: '100%',
         boxSizing: 'border-box', 
     };
-
     return (
     <div>
         <form onSubmit={handleSubmit} id="commentform">
-            <input type="color" value={color} onChange={e => handleColorChange(e)}></input>
-            <input type="text"  style={inputStyle} value={comment} placeholder="Type Here" onChange={e => handleCommentChange(e)}></input>
-            <button type="submit" style={buttonStyle}>Submit</button>
+            <div class='flex justify-center items-center mt-8 rounded-lg '>
+                <div class='flex justify-between  w-1/3 bg-gray-200 rounded-full hover:bg-gray-300'>
+                    <div class="rounded-full w-12 h-12 flex justify-center items-center hover:scale-105">
+                        <div class="rounded-full w-8 h-8" style={{backgroundColor:color}}>
+                            <input 
+                                type="color"
+                                value={color} 
+                                onChange={e => handleColorChange(e)}
+                                class="opacity-0"
+                            ></input>
+                        </div>
+                    </div>
+                    <input 
+                        type="text"  
+                        value={comment} 
+                        placeholder="Write an interesting message!" 
+                        onChange={e => handleCommentChange(e)}
+                        class="flex-grow bg-transparent rounded-3xl h-12 px-4 text-gray-800 focus:outline-none  focus:text-gray-900"
+                    ></input>
+                    <SubmitButton />
+                </div>
+            </div>
+            <br></br>
+            {/* <button type="submit" style={buttonStyle}>Submit</button> */}``
         </form>
-        <ul style={listStyle}>
-            {comments.map((c, index) => (
-                <li key={index} style={{color:c.color}}>{c.comment}</li>
-            ))}
-        </ul>
+        <div class='flex justify-center items-center mt-8'>
+            <ul style={listStyle}>
+                {comments.map((c, index) => (
+                    <li class="text-gray-500 italic" key={index} style={{color:c.color}}>{c.comment}</li>
+                ))}
+            </ul>
+        </div>
     </div>
     );
 };
