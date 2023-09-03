@@ -75,8 +75,8 @@ const CommentStructure = () => {
     };
     return (
     <div>
-        <form onSubmit={handleSubmit} id="commentform">
-            <div class='flex justify-center items-center mt-8 rounded-lg '>
+        <form onSubmit={handleSubmit} id="commentform" className='m-0 p-0'>
+            <div class='flex justify-center items-center rounded-lg min-h-screen'>
                 <div class='flex justify-between  w-1/3 bg-gray-200 rounded-full hover:bg-gray-300'>
                     <div class="rounded-full w-12 h-12 flex justify-center items-center hover:scale-105">
                         <div class="rounded-full w-8 h-8" style={{backgroundColor:color}}>
@@ -97,17 +97,25 @@ const CommentStructure = () => {
                     ></input>
                     <SubmitButton />
                 </div>
+                
             </div>
             <br></br>
+            
             {/* <button type="submit" style={buttonStyle}>Submit</button> */}
         </form>
-        <div class='flex justify-center items-center mt-8'>
+        {/* <div class='flex justify-center items-center mt-8'>
             <ul style={listStyle}>
                 {comments.map((c, index) => (
                     <li class="text-gray-500 italic" key={index} style={{color:c.color}}>{c.comment}</li>
                 ))}
             </ul>
-        </div>
+        </div> */}
+        {comments.map((c, index) => (
+            <div class='flex justify-center items-center'>
+                <p class="text-center box-content bg-gray-200 inline-block px-2 py-1 rounded-full absolute" key={index} style={{color:c.color, top:c.y+"%",left:c.x+"%"}}>{c.comment}</p>
+            </div>
+        ))}
+        {/* <p className='absolute top-0 left-0 z-50 text-white bg-black p-4 rounded-full'>hi im weird texxt</p> */}
     </div>
     );
 };
