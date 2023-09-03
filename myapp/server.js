@@ -17,13 +17,15 @@ app.listen(port, () => {
 app.post('/post-comment', (req, res) => {
     const comment = req.body.comment;
     const color = req.body.color;
-    data.comments.push({comment:comment,color:color})
-    res.status(200).send('Request was successful');
-    console.log(comment + " in " + color + " added in " + processingTime)
+    const x = Math.floor(Math.random() * (91 - 10) + 10);
+    const y = Math.floor(Math.random() * (91 - 10) + 10);
+    data.comments.push({comment:comment,color:color,x:x, y:y})
+    res.status(200).send("Added comment: " + comment + " in " + color + " successfully");
 });
 
 app.get('/get-comments', (req, res) => {
     res.json(data)
+    res.status(200);
 })
 
 
