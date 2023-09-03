@@ -3,17 +3,11 @@
 @tailwind utilities;
 
 @keyframes jiggle {
-  0% {
-    transform: translateX(-2.5px);
+  0%, 50% {
+    transform: translateX(-4px);
   }
-  25% {
-    transform: translateX(2.5px);
-  }
-  50% {
-    transform: translateX(-2.5px);
-  }
-  75% {
-    transform: translateX(2.5px);
+  25%, 75% {
+    transform: translateX(4px);
   }
   100% {
     transform: translateX(0);
