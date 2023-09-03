@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import SubmitButton from './SubmitButton';
+import './index.css';
 axios.defaults.timeout = 10000;
 
 const CommentStructure = () => {
@@ -14,7 +15,6 @@ const CommentStructure = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            // console.log(color)
             await addComment();
             await fetchComments();
         } catch (error) {
@@ -50,29 +50,6 @@ const CommentStructure = () => {
         setColor(event.target.value);
     };
 
-    const listStyle = {
-        listStyle: 'none'
-    }
-
-    const buttonStyle = {
-        backgroundColor: '#007bff',
-        color: '#fff',
-        padding: '10px 20px',
-        border: 'none',
-        borderRadius: '5px',
-        cursor: 'pointer' ,
-        fontSize: '16px'
-    };
-
-    const inputStyle = {
-        padding: '10px',
-        borderRadius: '5px',
-        border: '1px solid #ccc',
-        fontSize: '16px',
-        outline: 'none',
-        width: '100%',
-        boxSizing: 'border-box', 
-    };
     return (
     <div>
         <form onSubmit={handleSubmit} id="commentform" className='m-0 p-0'>
@@ -100,22 +77,15 @@ const CommentStructure = () => {
                 
             </div>
             <br></br>
-            
-            {/* <button type="submit" style={buttonStyle}>Submit</button> */}
+
         </form>
-        {/* <div class='flex justify-center items-center mt-8'>
-            <ul style={listStyle}>
-                {comments.map((c, index) => (
-                    <li class="text-gray-500 italic" key={index} style={{color:c.color}}>{c.comment}</li>
-                ))}
-            </ul>
-        </div> */}
+
         {comments.map((c, index) => (
             <div class='flex justify-center items-center'>
-                <p class="text-center box-content bg-gray-200 inline-block px-2 py-1 rounded-full absolute" key={index} style={{color:c.color, top:c.y+"%",left:c.x+"%"}}>{c.comment}</p>
+                <p class="text-center box-content bg-gray-200 inline-block px-2 py-1 rounded-full absolute animate-jiggle" key={index} style={{color:c.color, top:c.y+"%",left:c.x+"%"}}>{c.comment}</p>
             </div>
         ))}
-        {/* <p className='absolute top-0 left-0 z-50 text-white bg-black p-4 rounded-full'>hi im weird texxt</p> */}
+
     </div>
     );
 };
