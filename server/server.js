@@ -12,6 +12,9 @@ const port = 8080;
 app.listen(port, () => {
     console.log(port);
 })
+app.post('/', (req, res) => {
+    console.log("Root")
+});
 
 app.post('/post-comment', (req, res) => {
     const comment = req.body.comment;
@@ -19,12 +22,14 @@ app.post('/post-comment', (req, res) => {
     const x = Math.floor(Math.random() * (91 - 10) + 10);
     const y = Math.floor(Math.random() * (91 - 10) + 10);
     data.comments.push({comment:comment,color:color,x:x, y:y})
-    res.status(200).send("Added comment: " + comment + " in " + color + " successfully");
+    console.log("Added comment: " + comment + " in " + color + " successfully")
+    res.status(200);
 });
 
 app.get('/get-comments', (req, res) => {
     res.json(data)
     res.status(200);
+    console.log("Fetched comments")
 })
 
 
