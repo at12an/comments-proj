@@ -15,7 +15,7 @@
 }
 
 .animate-jiggle {
-  animation: jiggle 2s ease-in-out;
+  animation: jiggle 1s ease-in-out;
 }
 
 body {
