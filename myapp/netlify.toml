@@ -1,5 +1,4 @@
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Access-Control-Allow-Origin = "*"
-    Access-Control-Allow-Methods = "GET, POST"
+[[redirects]]
+  from = "/*"
+  to = "https://comment-page.onrender.com/*"
+  status = 200
