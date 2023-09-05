@@ -58,7 +58,7 @@ const CommentStructure = () => {
             </div>
         ))}
         <form onSubmit={handleSubmit} id="commentform" className='m-0 p-0'>
-            <div class='flex justify-center items-center rounded-lg min-h-screen'>
+            <div class='flex justify-center items-center rounded-lg min-h-screen z-[100]'>
                 <div class='flex justify-between  w-1/3 bg-gray-200 rounded-full hover:bg-gray-300 focus:bg-gray-300'>
                     <div class="rounded-full w-12 h-12 flex justify-center items-center hover:scale-105">
                         <div class="rounded-full w-8 h-8" style={{backgroundColor:color}}>
