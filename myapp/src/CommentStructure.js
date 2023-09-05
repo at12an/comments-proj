@@ -54,12 +54,12 @@ const CommentStructure = () => {
     <div>
          {comments.map((c, index) => (
             <div class='flex justify-center items-center'>
-                <p class="text-center box-content bg-gray-50 inline-block px-2 py-1 rounded-full absolute animate-jiggle z-[1]" key={index} style={{color:c.color, top:c.y+"%",left:c.x+"%"}}>{c.comment}</p>
+                <p class="text-center box-content bg-gray-50 inline-block px-2 py-1 rounded-full absolute animate-jiggle z-[1] hover:z-[3] hover:scale-125" key={index} style={{color:c.color, top:c.y+"%",left:c.x+"%"}}>{c.comment}</p>
             </div>
         ))}
         <form onSubmit={handleSubmit} id="commentform" className='m-0 p-0'>
-            <div class='flex justify-center items-center rounded-lg min-h-screen z-[100]'>
-                <div class='flex justify-between  w-1/3 bg-gray-200 rounded-full hover:bg-gray-300 focus:bg-gray-300 z-[100]'>
+            <div class='flex justify-center items-center rounded-lg min-h-screen z-[2]'>
+                <div class='flex justify-between  w-1/3 bg-gray-200 rounded-full hover:bg-gray-300 focus:bg-gray-300 z-[2]'>
                     <div class="rounded-full w-12 h-12 flex justify-center items-center hover:scale-105">
                         <div class="rounded-full w-8 h-8" style={{backgroundColor:color}}>
                             <input 
