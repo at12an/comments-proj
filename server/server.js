@@ -14,11 +14,6 @@ app.listen(port, () => {
 })
 
 
-app.get('/', (req, res) => {
-    console.log("Hi")
-});
-
-
 app.post('/post-comment', (req, res) => {
     const comment = req.body.comment;
     const color = req.body.color;
