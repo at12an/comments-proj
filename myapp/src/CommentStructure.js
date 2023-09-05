@@ -23,13 +23,13 @@ const CommentStructure = () => {
     };
 
     const addComment = () => {
-        axios.post('https://comment-page.onrender.com:8080/post-comment', {comment, color}).catch((error) => {
+        axios.post('/post-comment', {comment, color}).catch((error) => {
             console.log(error);
         });
     };
 
     const fetchComments = async () => {
-        axios.get('https://comment-page.onrender.com:8080/get-comments').then((response) => {
+        axios.get('/get-comments').then((response) => {
             setComments(response.data.comments)
         }).catch((error) => {
             console.log(error);
