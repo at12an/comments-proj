@@ -37,9 +37,9 @@ const CommentStructure = () => {
     };
 
     useEffect(() => {
-        fetchComments().catch((error) => {
-            console.log('An error occurred while fetching comments.');
-        });;
+        // fetchComments().catch((error) => {
+        //     console.log('An error occurred while fetching comments.');
+        // });;
     }, []);
 
     const handleCommentChange = (event) => {
