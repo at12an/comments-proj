@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 
 const data = {comments:[]}
 
-const port = 8080;
+const port = 12000;
 
 app.listen(port, () => {
     console.log(port);
