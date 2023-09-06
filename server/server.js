@@ -1,11 +1,13 @@
+// IMPORTS
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const rateLimit = require('express-rate-limit');
 
+// DB CONNECTION
 const db_url  = process.env.DB_URL
-
 mongoose.connect(db_url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -20,21 +22,29 @@ const commentSchema = new mongoose.Schema({
 
 const Comment = mongoose.model('Comment', commentSchema);
 
+// LIMIT REQUESTS
+const commentLimiter = rateLimit({
+    windowMs: 60 * 1000, 
+    max: 1, 
+    message: 'Too many comment requests. Please try again later.',
+});
 
+// INFORMATION PARSING
 app.use(bodyParser.json());
 
-const data = {comments:[]}
 
-const port = 8080;
 
+// ROUTING
+const port = 12000;
 app.listen(port, () => {
     console.log(port);
 })
+
 app.post('/', (req, res) => {
     console.log("Root")
 });
 
-app.post('/post-comment', (req, res) => {
+app.post('/post-comment', commentLimiter, (req, res) => {
     async function saveComment() {
         const comment = req.body.comment;
         const color = req.body.color;
@@ -55,10 +65,7 @@ app.post('/post-comment', (req, res) => {
             res.status(500).json({ error: 'Internal server error' });
         }
     }
-
-    // Call the async function to handle the save operation
     saveComment();
-    // data.comments.push({comment:comment,color:color,x:x, y:y})
 });
 
 app.get('/get-comments', (req, res) => {
