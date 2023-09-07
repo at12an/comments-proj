@@ -23,11 +23,11 @@ const commentSchema = new mongoose.Schema({
 const Comment = mongoose.model('Comment', commentSchema);
 
 // LIMIT REQUESTS
-const commentLimiter = rateLimit({
-    windowMs: 60 * 1000, 
-    max: 1, 
-    message: 'Too many comment requests. Please try again later.',
-});
+// const commentLimiter = rateLimit({
+//     windowMs: 60 * 1000, 
+//     max: 1, 
+//     message: 'Too many comment requests. Please try again later.',
+// });
 
 // INFORMATION PARSING
 app.use(bodyParser.json());
@@ -44,7 +44,7 @@ app.post('/', (req, res) => {
     console.log("Root")
 });
 
-app.post('/post-comment', commentLimiter, (req, res) => {
+app.post('/post-comment', (req, res) => {
     async function saveComment() {
         const comment = req.body.comment;
         const color = req.body.color;

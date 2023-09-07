@@ -54,7 +54,12 @@ const CommentStructure = () => {
     <div>
          {comments.map((c, index) => (
             <div className='flex justify-center items-center'>
-                <p className="text-center box-content bg-gray-50 inline-block px-2 py-1 rounded-full absolute animate-jiggle z-[1] hover:z-[3] hover:scale-125" key={index} style={{color:c.color, top:c.y+"%",left:c.x+"%"}}>{c.comment}</p>
+                <p 
+                    className="text-center box-content bg-gray-100 inline-block px-2 py-1 rounded-full absolute animate-jiggle z-[1] hover:z-[3] hover:scale-125 transition duration-300 ease-in-out" 
+                    key={index} 
+                    style={{color:c.color, top:c.y+"%",left:c.x+"%"}}
+                >{c.comment}
+                </p>
             </div>
         ))}
         <form onSubmit={handleSubmit} id="commentform" className='m-0 p-0'>
@@ -70,12 +75,14 @@ const CommentStructure = () => {
                             ></input>
                         </div>
                     </div>
+                    
                     <input 
                         type="text"  
                         value={comment} 
                         placeholder="Write an interesting message!" 
                         onChange={e => handleCommentChange(e)}
                         className="flex-grow bg-transparent rounded-3xl h-12 px-4 text-gray-800 focus:outline-none  focus:text-gray-900 "
+                        style={{color:color}}
                     ></input>
                     <SubmitButton style={{color:color}}/>
                 </div>
