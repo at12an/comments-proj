@@ -85,5 +85,16 @@ app.get('/get-comments', (req, res) => {
     saveComment()
 })
 
+app.post('/clear-comments', async (req, res) => {
+    try {
+        await Comment.deleteMany({});
+        console.log('Cleared all comments');
+        res.status(200).json({ message: 'All comments have been cleared' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 
 
