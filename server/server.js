@@ -16,6 +16,7 @@ mongoose.connect(db_url, {
 const commentSchema = new mongoose.Schema({
     comment: String,
     color: String,
+    bgColor: String,
     x: Number,
     y: Number,
 });
