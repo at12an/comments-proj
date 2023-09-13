@@ -10,7 +10,7 @@ const CommentStructure = () => {
 
     const [comment, setComment] = useState('');
 
-    const [color, setColor] = useState('#000000');
+    const [color, setColor] = useState('#FFFFFF');
 
     const [bgColor, setBgColor] = useState('#000000');
     
@@ -22,6 +22,12 @@ const CommentStructure = () => {
         } catch (error) {
             console.log('An error occurred while submitting the comment.');
         }
+    };
+
+    const clearComments = () => {
+        axios.post('/clear-comments', {}).catch((error) => {
+            console.log(error);
+        });
     };
 
     const addComment = () => {
