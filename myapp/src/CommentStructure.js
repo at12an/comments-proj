@@ -24,11 +24,11 @@ const CommentStructure = () => {
         }
     };
 
-    const clearComments = () => {
-        axios.post('/clear-comments', {}).catch((error) => {
-            console.log(error);
-        });
-    };
+    // const clearComments = () => {
+    //     axios.post('/clear-comments', {}).catch((error) => {
+    //         console.log(error);
+    //     });
+    // };
 
     const addComment = () => {
         axios.post('/post-comment', {comment, color, bgColor}).catch((error) => {
