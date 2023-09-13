@@ -48,11 +48,13 @@ app.post('/post-comment', (req, res) => {
     async function saveComment() {
         const comment = req.body.comment;
         const color = req.body.color;
+        const bgColor = req.body.bgColor
         const x = Math.floor(Math.random() * (91 - 10) + 10);
         const y = Math.floor(Math.random() * (91 - 10) + 10);
         const newComment = new Comment({
             comment: comment,
             color: color,
+            bgColor: bgColor,
             x: x,
             y: y,
         });

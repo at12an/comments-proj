@@ -11,6 +11,8 @@ const CommentStructure = () => {
     const [comment, setComment] = useState('');
 
     const [color, setColor] = useState('#000000');
+
+    const [bgColor, setBgColor] = useState('#000000');
     
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -23,7 +25,7 @@ const CommentStructure = () => {
     };
 
     const addComment = () => {
-        axios.post('/post-comment', {comment, color}).catch((error) => {
+        axios.post('/post-comment', {comment, color, bgColor}).catch((error) => {
             console.log(error);
         });
     };
@@ -46,6 +48,10 @@ const CommentStructure = () => {
         setComment(event.target.value);
     };
 
+    const handleBgColorChange = (event) => {
+        setBgColor(event.target.value);
+    };
+
     const handleColorChange = (event) => {
         setColor(event.target.value);
     };
@@ -57,20 +63,30 @@ const CommentStructure = () => {
                 <p 
                     className="text-center box-content bg-gray-100 inline-block px-2 py-1 rounded-full absolute animate-jiggle z-[1] hover:z-[3] hover:scale-125 transition duration-300 ease-in-out" 
                     key={index} 
-                    style={{color:c.color, top:c.y+"%",left:c.x+"%"}}
+                    style={{color:c.color, top:c.y+"%",left:c.x+"%",backgroundColor:c.bgColor}}
                 >{c.comment}
                 </p>
             </div>
         ))}
         <form onSubmit={handleSubmit} id="commentform" className='m-0 p-0'>
             <div className='flex justify-center items-center rounded-lg min-h-screen z-[2]'>
-                <div className='flex justify-between  w-1/3 bg-gray-200 rounded-full hover:bg-gray-300 focus:bg-gray-300 z-[2]'>
-                    <div className="rounded-full w-12 h-12 flex justify-center items-center hover:scale-105">
-                        <div className="rounded-full w-8 h-8" style={{backgroundColor:color}}>
+                <div className='flex justify-between  w-1/3 bg-gray-200 rounded-full hover:bg-gray-300 focus:bg-gray-300 z-[2] ' style={{backgroundColor:bgColor}}>
+                    <div className="rounded-full w-12 h-12 flex justify-center items-center hover:scale-105 " >
+                        <div className="rounded-full w-8 h-8 border-2 " style={{backgroundColor:color}}>
                             <input 
                                 type="color"
                                 value={color} 
                                 onChange={e => handleColorChange(e)}
+                                className="opacity-0"
+                            ></input>
+                        </div>
+                    </div>
+                    <div className="rounded-full h-12 flex justify-center items-center hover:scale-105">
+                        <div className="rounded-full w-8 h-8 border-2" style={{backgroundColor:bgColor}}>
+                            <input 
+                                type="color"
+                                value={bgColor} 
+                                onChange={e => handleBgColorChange(e)}
                                 className="opacity-0"
                             ></input>
                         </div>

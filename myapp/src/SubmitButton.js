@@ -4,7 +4,7 @@ const SubmitButton = () => {
   return (
     <button
       type="submit"
-      className="bg-transparent text-gray-600 px-4 py-2 rounded-full transition duration-300 transform hover:scale-125"
+      className="bg-transparent text-white px-4 py-2 rounded-full transition duration-300 transform hover:scale-125"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
